@@ -1,19 +1,24 @@
 from django.db import models
 
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
 # Create your models here.
 
-
-class Model3d(models.Model):
-    """Model representing a 3D model
+class Badge(models.Model):
+    """Model representing a badge which congrats a user or model
     """
+    name = models.CharField(max_length=50, null=True, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
+    # image = models.ImageField...
 
-    name = models.CharField(null=True, max_length=150)
-    description = models.CharField(blank=True, null=True, max_length=500)
-    number_of_views = models.IntegerField(blank=True, null=True, default=0)
-    # vertices_number = models.IntegerField(null=True, blank=True)
-    # file = models.FileField...
+    # user = models.ForeignKey(User, related_name="badges", null=True)
+    # a Badge can be given to a user or a model or even more.
+    content_type = models.ForeignKey(ContentType, null=True)
+    object_id = models.PositiveIntegerField(null=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
 
 class Creator3d(models.Model):
     """Model representing a 3D model maker (can upload a model on SketchFab for
@@ -24,12 +29,18 @@ class Creator3d(models.Model):
     """
     user = models.OneToOneField(User)
     date_creation_sign_in = models.DateField(auto_now_add=True)
+    badges = GenericRelation(Badge, related_query_name="users")
 
 
-class Badge(models.Model):
-    """Model representing a badge
+class Model3d(models.Model):
+    """Model representing a 3D model
     """
-    user = models.ForeignKey(User, related_name="badges")
-    name = models.CharField(max_length=50, null=True, blank=True)
-    description = models.CharField(max_length=250, null=True, blank=True)
-    # image = models.ImageField...
+
+    name = models.CharField(null=True, max_length=150)
+    description = models.CharField(blank=True, null=True, max_length=500)
+    number_of_views = models.IntegerField(blank=True, null=True, default=0)
+    creator = models.ForeignKey(Creator3d, related_name='models', null=True)
+    # vertices_number = models.IntegerField(null=True, blank=True)
+    # file = models.FileField...
+
+    badges = GenericRelation(Badge, related_query_name="models")
