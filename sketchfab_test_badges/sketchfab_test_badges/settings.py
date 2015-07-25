@@ -53,6 +53,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    # personals middleware
+    'badges_handler.middleware.StarBadgeMiddleWare'
 )
 
 ROOT_URLCONF = 'sketchfab_test_badges.urls'
@@ -105,3 +108,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+BADGES_SETTINGS = {
+    'star': 24
+}
