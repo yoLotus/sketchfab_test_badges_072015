@@ -6,19 +6,6 @@ from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelatio
 
 # Create your models here.
 
-class Badge(models.Model):
-    """Model representing a badge which congrats a user or model
-    """
-    name = models.CharField(max_length=50, null=True, blank=True)
-    description = models.CharField(max_length=250, null=True, blank=True)
-    # image = models.ImageField...
-
-    # user = models.ForeignKey(User, related_name="badges", null=True)
-    # a Badge can be given to a user or a model or even more.
-    content_type = models.ForeignKey(ContentType, null=True)
-    object_id = models.PositiveIntegerField(null=True)
-    content_object = GenericForeignKey('content_type', 'object_id')
-
 
 class Creator3d(models.Model):
     """Model representing a 3D model maker (can upload a model on SketchFab for
@@ -29,7 +16,23 @@ class Creator3d(models.Model):
     """
     user = models.OneToOneField(User)
     date_creation_sign_in = models.DateField(auto_now_add=True)
-    badges = GenericRelation(Badge, related_query_name="users")
+    # badges = GenericRelation(Badge, related_query_name="users")
+
+
+class Badge(models.Model):
+    """Model representing a badge which congrats a user or model
+    """
+    name = models.CharField(max_length=50, null=True, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
+    # image = models.ImageField...
+
+    # a Badge can be given to a user or a model or even more.
+    content_type = models.ForeignKey(ContentType, null=True)
+    object_id = models.PositiveIntegerField(null=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    # Finally, after thinking a link to a user is necessary
+    creator3d = models.ForeignKey(Creator3d, related_name='badges', null=True)
 
 
 class Model3d(models.Model):
@@ -44,3 +47,21 @@ class Model3d(models.Model):
     # file = models.FileField...
 
     badges = GenericRelation(Badge, related_query_name="models")
+
+
+# signals
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.conf import settings
+
+COLLECTOR_BADGE_THRESHOLD = settings.BADGES_SETTINGS.get('collector', -1)
+
+@receiver(post_save, sender=Model3d)
+def check_for_collector_badge(sender, instance, created, **kwargs):
+    print('models created !')
+    if Model3d.objects.filter(creator=instance.creator).count() \
+       == COLLECTOR_BADGE_THRESHOLD:
+        Badge.objects.create(content_object=instance.creator, name='Collector',
+                             description='You have uploaded more than {} models !'
+                             .format(COLLECTOR_BADGE_THRESHOLD),
+                             creator3d=instance.creator)
