@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # 3rd apps
+    'django_cron',
 
     # personal apps
     'badges_handler',
@@ -111,5 +112,10 @@ STATIC_URL = '/static/'
 
 
 BADGES_SETTINGS = {
-    'star': 24
+    'star': 24,  # number of views
+    'pionner': ['00:00', ],  # each time in minutes a user must be check
 }
+
+CRON_CLASSES = [
+    "badges_handler.crontab.PionnerBadgeCron",
+]
