@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+SketchFab badges exercices
+{% endblock %}
+
+{% block content %}
+Creators list:
+<ul>
+  {% for c in creators %}
+  <li> <a href="{% url "badges:users_model" c.pk %}">{{ c.user.username }}</a> </li>
+  {% endfor %}
+</ul>
+
+Models list:
+<ul>
+  {% for m in models %}
+  <li> <a href="{% url "badges:detail_model" m.pk %}">{{ m.name }}</a> </li>
+  {% endfor %}
+</ul>
+{% endblock %}

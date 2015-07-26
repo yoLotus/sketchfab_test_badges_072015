@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Model3d detail </title>
-    <meta charset='utf-8'>
-    <script>
-    </script>
-  <style>
-  </style>
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    {{ model3d.name }} created by {{ model3d.creator.user }}<br>
-    number of views : {{ model3d.number_of_views }}
-    <p style="font-style: italic">
-      {{ model3d.description }}
-    </p>
+{% block title %}
+SketchFab Detail model {{ model3d.name}}
+{% endblock %}
 
-    badges:
-    <p>
-      <ul>
-        {% for b in model3d.badges.all %}
-        <li> {{ b.name }} | <i> {{ b.description }}</i></li>
-        {% endfor %}
-      </ul>
-    </p>
-  </body>
-</html>
+{% block content %}
+{{ model3d.name }} created by {{ model3d.creator.user }}<br>
+number of views : {{ model3d.number_of_views }}
+<p style="font-style: italic">
+  {{ model3d.description }}
+</p>
+
+badges:
+<p>
+  <ul>
+    {% for b in model3d.badges.all %}
+    <li> {{ b.name }} | <i> {{ b.description }}</i></li>
+    {% endfor %}
+  </ul>
+</p>
+{% endblock %}

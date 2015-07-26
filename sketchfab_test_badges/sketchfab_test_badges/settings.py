@@ -61,10 +61,11 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'sketchfab_test_badges.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,9 +113,9 @@ STATIC_URL = '/static/'
 
 
 BADGES_SETTINGS = {
-    'star': 24,  # number of views
-    'pionner': ['00:00', ],  # each time in minutes a user must be check
-    'collector': 5
+    'star': 1000,  # number of views
+    'pionner': ['00:00', ],  # each day at theses hours, check for pionner users
+    'collector': 5, # number of models a user must upload to get this badge
 }
 
 CRON_CLASSES = [

@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+from badges_handler.views import IndexTemplateView as index
 # from django.contrib import admin
 
 urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^badges/', include('badges_handler.urls', namespace='badges')),
+    url(r'^$', index.as_view(), name='index'),
+    url(r'^badges/', include('badges_handler.urls', namespace='badges'))
 ]

@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Model3d detail </title>
-    <meta charset='utf-8'>
-    <script>
-    </script>
-  <style>
-  </style>
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    {{ creator.user.username }}
-    <ul>
-      {% for m in creator.models.all %}
-      <li>{{ m.name }}</li>
-      <ul>
-        {% for b in m.badges.all %}
-        <li> {{ b.name }} | {{ b.description }}</li>
-      {% endfor %}
-      </ul>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% block title %}
+SketchFab Detail creator {{ creator.user.username }}
+{% endblock %}
+
+{% block content %}
+ {{ creator.user.username }}
+ <ul>
+   {% for m in creator.models.all %}
+   <li> <a href="{% url "badges:detail_model" m.pk %}"> {{ m.name }}</a></li>
+   {% endfor %}
+ </ul>
+
+<ul>
+  {% for b in creator.badges.all %}
+  <li>
+    {{ b.name }} | {{ b.description }}
+    {% if b.name == 'Star Model' %}
+    ( for the model <i>{{ b.content_object.name }}</i>)
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
