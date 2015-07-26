@@ -59,7 +59,7 @@ COLLECTOR_BADGE_THRESHOLD = settings.BADGES_SETTINGS.get('collector', -1)
 @receiver(post_save, sender=Model3d)
 def check_for_collector_badge(sender, instance, created, **kwargs):
     if Model3d.objects.filter(creator=instance.creator).count() \
-       == COLLECTOR_BADGE_THRESHOLD:
+       == COLLECTOR_BADGE_THRESHOLD and created:
         Badge.objects.create(content_object=instance.creator, name='Collector',
                              description='You have uploaded more than {} models !'
                              .format(COLLECTOR_BADGE_THRESHOLD),
