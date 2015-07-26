@@ -26,7 +26,8 @@ class StarBadgeMiddleWare:
                 badge_star = Badge(content_object=m.first(),
                                    name='Star Model',
                                    description='This model has more than {} views'\
-                                   .format(views_for_star_badges))
+                                   .format(views_for_star_badges),
+                                   creator3d=m.first().creator)
                 badge_star.save()
 
         return None             # let other middlewares do their jobs
