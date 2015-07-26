@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Model3d detail </title>
+    <meta charset='utf-8'>
+    <script>
+    </script>
+  <style>
+  </style>
+  </head>
+
+  <body>
+    {{ creator.user.username }}
+    <ul>
+      {% for m in creator.models.all %}
+      <li>{{ m.name }}</li>
+      <ul>
+        {% for b in m.badges.all %}
+        <li> {{ b.name }} | {{ b.description }}</li>
+      {% endfor %}
+      </ul>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
