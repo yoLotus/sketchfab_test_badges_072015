@@ -114,6 +114,7 @@ STATIC_URL = '/static/'
 BADGES_SETTINGS = {
     'star': 24,  # number of views
     'pionner': ['00:00', ],  # each time in minutes a user must be check
+    'collector': 5
 }
 
 CRON_CLASSES = [
