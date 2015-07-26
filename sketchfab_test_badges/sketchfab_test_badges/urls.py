@@ -18,5 +18,5 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^models/', include('badges_handler.urls', namespace='models')),
+    url(r'^badges/', include('badges_handler.urls', namespace='badges')),
 ]
