@@ -21,12 +21,15 @@ suite à notre premier entretien.
 
 ## installation
 
+Le projet se nomme sketchfab_test_badges et l'application badges_handler.
+
 creation d'un environnement virtuel, installation des dépendances et tests
 
     $ mkvirtualenv skechfab_exercice
     $ cd sketchfab_test_badges
     $ pip install -r requirements.txt
     $ python manage.py test badges_handler
+    $ python manage.py runserver
 
 ## settings
 
