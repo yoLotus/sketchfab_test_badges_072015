@@ -1,3 +1,7 @@
+**Attention** Le code présenté ici n'a rien à voir avec le projet Sketchfab en lui-même
+**Warranty** The code from this project has no link with the Sketchfab project
+
+
 # Exercice proposé par Sketchfab
 ------------------------------
 
