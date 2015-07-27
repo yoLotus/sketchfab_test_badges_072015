@@ -67,3 +67,7 @@ dictionnaire suivant permet de configurer les options des badges.
   clef généric dans le modèle _Badge_ afin de pourvoir décerner de façon
   généric des badges à un utilisateur ou un modèle (ainsi chaque modèle peut
   être starré) ou encore à d'autres entités possibles.
+
+### applications externes
+* django-cron: http://django-cron.readthedocs.org/en/latest/index.html
+* freezegun: https://github.com/spulec/freezegun
