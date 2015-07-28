@@ -1,9 +1,10 @@
-import itertools
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views import generic
 
 from badges_handler.models import Model3d, Creator3d
 
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -73,8 +74,12 @@ def check_new_user(request):
             data = user_form.cleaned_data
             user = User.objects.create_user(data['username'], '', data['password1'])
             Creator3d.objects.create(user=user)
+            user = authenticate(username=data['username'], password=data['password1'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
             return HttpResponseRedirect(request.POST['next'])
         else:
-            return HttpResponseRedirect(reverse('badges:create'))
+            return HttpResponseRedirect(reverse('badges:user_create'))
     else:
         return HttpResponse(reverse('index'))

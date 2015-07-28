@@ -14,7 +14,8 @@
       {{ user.username }}
     {% endif %}
   </p>
-  <form method="post" action="{% url "badges:check" %}">     {% csrf_token %}
+  <form method="post" action="{% url "badges:check" %}">
+    {% csrf_token %}
     {{ form.as_p }}
     <input type="submit">
     <input type="hidden" name="next" value="{% url "index" %}">

@@ -24,8 +24,7 @@
       {% if user.is_authenticated %}
       log as {{ user }} <a href={% url "badges:logout" %}>logout </a> <br>
       {% else %}
-      <a href={% url "badges:login" %}> log in </a> or <a href="{% url
-      "badges:user_create" %}"> sign in </a><br>
+      <a href={% url "badges:login" %}> log in </a> or <a href="{% url "badges:user_create" %}"> sign in </a><br>
       {% endif %}
       <hr>
       {% block content %}
