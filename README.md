@@ -1,7 +1,8 @@
-**Attention** Le code présenté ici n'a rien à voir avec le projet Sketchfab en
-  lui-même
+**Attention** Le code présenté n'est en aucun cas lié au code officiel du
+  projet Sketchfab mais fait part d'un processus d'entretien.
 
-**Warranty** The code from this project has no link with the Sketchfab project
+**Warranty** The code from this project has no link with the official code of
+  Sketchfab project but it is part of a job interview
 
 
 # Exercice proposé par Sketchfab
@@ -27,7 +28,7 @@ suite à notre premier entretien.
 
 ## installation
 
-Le projet se nomme sketchfab_test_badges et l'application badges_handler.
+Le projet se nomme *sketchfab_test_badges* et l'application *badges_handler*.
 
 creation d'un environnement virtuel, installation des dépendances et tests
 
@@ -57,11 +58,11 @@ dictionnaire suivant permet de configurer les options des badges.
   d'ajouter les urls cibles pour ajouter ce même badge à d'autres objets que
   les modèles 3d.
 * Le badge _pionner_ est géré grâce à une tâche cron au travers de
-  l'application django-cron. Après reflexion, pour un site avec de nombreux
+  l'application django-cron. Après réflexions, pour un site avec de nombreux
   utilisateurs comme je pense _SketchFab_, une routine celery serait peut-être
   plus efficace.
 * le badge _collector_ est remis au travers d'un callback associé au signal
-  _post\_save_ sur le modèle Model3d. Lorsqu'un modèle est crée en base, son
+  _post\_save_ sur le modèle Model3d. Lorsqu'un modèle est créé en base, son
   auteur est automatiquement enregistré à l'aide d'une clef étrangère. Si on
   suit cette clef, on peut récupérer son créateur et compter le nombre de
   modèles qu'il a déjà créer.
@@ -70,12 +71,13 @@ dictionnaire suivant permet de configurer les options des badges.
         badges = creator.badges.all()
 
 * J'ai décidé d'utiliser l'application _ContentType_ de Django pour créer une
-  clef généric dans le modèle _Badge_ afin de pourvoir décerner de façon
-  généric des badges à un utilisateur ou un modèle (ainsi chaque modèle peut
-  être starré) ou encore à d'autres entités possibles.
+  clef générique dans le modèle _Badge_ afin de pourvoir décerner de façon
+  générique des badges à un utilisateur ou un modèle (ainsi chaque modèle peut
+  être indépendamment starré) ou encore être décerné à d'autres entités
+  possibles.
 
 * Ajout d'un système d'authentification pour créer ses propres modèles. Les
-  modèles de tous les utilisateurs et les profils de tous les utilisateurs sont
+  modèles de tous les utilisateurs ainsi que les profils de ces derniers sont
   publics. La seule page où une authentification est obligatoire est la page de
   création de modèle.
 
