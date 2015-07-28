@@ -12,10 +12,27 @@ Creators list:
   {% endfor %}
 </ul>
 
+<a href="{% url "badges:model_create" %}"> Create your own model </a>
+<br><br>
 Models list:
+{% if models %}
 <ul>
   {% for m in models %}
   <li> <a href="{% url "badges:detail_model" m.pk %}">{{ m.name }}</a> </li>
   {% endfor %}
 </ul>
+{% else %}
+<h4>yours models</h4>
+<ul>
+  {% for m in models_current_creators %}
+  <li> <a href="{% url "badges:detail_model" m.pk %}">{{ m.name }}</a> </li>
+  {% endfor %}
+</ul>
+<h4> other creators' models</h4>
+<ul>
+  {% for m in others_models %}
+  <li> <a href="{% url "badges:detail_model" m.pk %}">{{ m.name }}</a> </li>
+  {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

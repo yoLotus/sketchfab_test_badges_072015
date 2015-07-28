@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -47,6 +48,9 @@ class Model3d(models.Model):
     # file = models.FileField...
 
     badges = GenericRelation(Badge, related_query_name="models")
+
+    def get_absolute_url(self):
+        return reverse('badges:detail_model', args=[str(self.pk)])
 
 
 # signals

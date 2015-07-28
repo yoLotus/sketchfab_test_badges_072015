@@ -121,3 +121,6 @@ BADGES_SETTINGS = {
 CRON_CLASSES = [
     "badges_handler.crontab.PionnerBadgeCron",
 ]
+
+# Auth
+LOGIN_URL = '/badges/login'

@@ -5,7 +5,7 @@ SketchFab Detail model {{ model3d.name}}
 {% endblock %}
 
 {% block content %}
-{{ model3d.name }} created by {{ model3d.creator.user }}<br>
+{{ model3d.name }} created by <a href="{% url "badges:users_model" model3d.creator.pk %}">{{ model3d.creator.user }}</a><br>
 number of views : {{ model3d.number_of_views }}
 <p style="font-style: italic">
   {{ model3d.description }}

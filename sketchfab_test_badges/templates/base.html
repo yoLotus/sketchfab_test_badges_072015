@@ -21,9 +21,16 @@
   </head>
   <body>
     <div id="content">
-       {% block content %}
-       {% endblock %}
-       <a href={% url "index" %}>index </a>
+      {% if user.is_authenticated %}
+      log as {{ user }} <a href={% url "badges:logout" %}>logout </a> <br>
+      {% else %}
+      <a href={% url "badges:login" %}> log in </a> or <a href="{% url
+      "badges:user_create" %}"> sign in </a><br>
+      {% endif %}
+      <hr>
+      {% block content %}
+      {% endblock %}
+      <a href={% url "index" %}>index </a><br>
     </div>
   </body>
 </html>

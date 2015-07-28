@@ -20,5 +20,6 @@ from badges_handler.views import IndexTemplateView as index
 urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', index.as_view(), name='index'),
-    url(r'^badges/', include('badges_handler.urls', namespace='badges'))
+    url(r'^badges/', include('badges_handler.urls', namespace='badges')),
+    url(r'^auth/', include('django.contrib.auth.urls'))
 ]

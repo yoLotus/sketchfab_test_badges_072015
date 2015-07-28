@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{%  load staticfiles %}
+
+{% block title %}
+  Nouvel utilisateur
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block content %}
+  <p>
+    {% if user.is_authenticated %}
+      {{ user.username }}
+    {% endif %}
+  </p>
+  <form method="post" action="{% url "badges:check" %}">     {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+    <input type="hidden" name="next" value="{% url "index" %}">
+  </form>
+{% endblock %}
