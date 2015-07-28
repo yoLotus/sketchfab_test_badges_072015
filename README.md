@@ -1,4 +1,6 @@
-**Attention** Le code présenté ici n'a rien à voir avec le projet Sketchfab en lui-même
+**Attention** Le code présenté ici n'a rien à voir avec le projet Sketchfab en
+  lui-même
+
 **Warranty** The code from this project has no link with the Sketchfab project
 
 
@@ -71,6 +73,11 @@ dictionnaire suivant permet de configurer les options des badges.
   clef généric dans le modèle _Badge_ afin de pourvoir décerner de façon
   généric des badges à un utilisateur ou un modèle (ainsi chaque modèle peut
   être starré) ou encore à d'autres entités possibles.
+
+* Ajout d'un système d'authentification pour créer ses propres modèles. Les
+  modèles de tous les utilisateurs et les profils de tous les utilisateurs sont
+  publics. La seule page où une authentification est obligatoire est la page de
+  création de modèle.
 
 ### applications externes
 * django-cron: http://django-cron.readthedocs.org/en/latest/index.html
