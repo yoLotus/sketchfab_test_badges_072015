@@ -35,6 +35,8 @@ creation d'un environnement virtuel, installation des dépendances et tests
     $ mkvirtualenv skechfab_exercice
     $ cd sketchfab_test_badges
     $ pip install -r requirements.txt
+    $ python manage.py makemigrations
+    $ python manage.py migrate
     $ python manage.py test badges_handler
     $ python manage.py runserver
 
